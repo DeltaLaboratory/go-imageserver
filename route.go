@@ -13,6 +13,10 @@ func faviconHandler(c *gin.Context) {
 	c.File("./statics/favicon.ico")
 }
 
+func noRouteHander(c *gin.Context) {
+	c.File("./statics/notfound.webp")
+}
+
 func formFileConvert(form *multipart.FileHeader) ([]byte, error) {
 	buf := make([]byte, form.Size)
 	file, err := form.Open()

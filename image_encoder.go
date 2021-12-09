@@ -50,8 +50,8 @@ func EncodeAvif(input image.Image) (bytes.Buffer, error) {
 	var err error
 	var buffer bytes.Buffer
 	if err = avif.Encode(&buffer, input, &avif.Options{
-		Threads: 4,
-		Quality: 63,
+		Threads: 8,
+		Quality: 48,
 	}); err != nil {
 		return buffer, err
 	}

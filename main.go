@@ -10,7 +10,8 @@ func main() {
 	server := gin.New()
 	server.POST("/upload", uploadHandler)
 	server.GET("/image/:id", imageHandler)
-	server.NoRoute(faviconHandler)
+	server.GET("/favicon.ico", faviconHandler)
+	server.NoRoute(noRouteHander)
 	if err := server.Run(":80"); err != nil {
 		log.Println(err)
 		return
