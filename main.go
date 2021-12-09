@@ -11,7 +11,7 @@ func main() {
 	server.POST("/upload", uploadHandler)
 	server.GET("/image/:id", imageHandler)
 	server.GET("/favicon.ico", faviconHandler)
-	server.NoRoute(noRouteHander)
+	server.NoRoute(noRouteHandler)
 	if err := server.Run(":80"); err != nil {
 		log.Println(err)
 		return
