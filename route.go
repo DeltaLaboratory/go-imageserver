@@ -5,7 +5,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"lukechampine.com/blake3"
-	"mime/multipart"
 	"os"
 )
 
@@ -15,29 +14,6 @@ func faviconHandler(c *gin.Context) {
 
 func noRouteHander(c *gin.Context) {
 	c.File("./statics/notfound.webp")
-}
-
-func formFileConvert(form *multipart.FileHeader) ([]byte, error) {
-	buf := make([]byte, form.Size)
-	file, err := form.Open()
-	if err != nil {
-		return nil, err
-	}
-	defer func(file multipart.File) {
-		err := file.Close()
-		if err != nil {
-			log.Println(err)
-		}
-	}(file)
-	if _, err = file.Read(buf); err != nil {
-		return nil, err
-	}
-	return buf, nil
-}
-
-func exists(hash string) bool {
-	_, err := os.Stat("./images/" + hash + ".webp")
-	return err == nil
 }
 
 // upload single image file
