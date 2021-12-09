@@ -12,7 +12,7 @@ func faviconHandler(c *gin.Context) {
 	c.File("./statics/favicon.ico")
 }
 
-func noRouteHander(c *gin.Context) {
+func noRouteHandler(c *gin.Context) {
 	c.File("./statics/notfound.webp")
 }
 
