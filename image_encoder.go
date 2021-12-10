@@ -6,6 +6,7 @@ import (
 	"github.com/Kagami/go-avif"
 	"github.com/chai2010/webp"
 	"golang.org/x/image/bmp"
+	"golang.org/x/image/tiff"
 	"image"
 	"image/gif"
 	"image/jpeg"
@@ -28,6 +29,8 @@ func DecodeImage(input []byte) (image.Image, error) {
 		img, err = webp.Decode(bytes.NewReader(input))
 	case "image/bmp":
 		img, err = bmp.Decode(bytes.NewReader(input))
+	case "image/tiff":
+		img, err = tiff.Decode(bytes.NewReader(input))
 	default:
 		return nil, errors.New("not supported image type")
 	}
