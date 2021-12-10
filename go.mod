@@ -6,6 +6,7 @@ require (
 	github.com/Kagami/go-avif v0.1.0
 	github.com/chai2010/webp v1.1.0
 	github.com/gin-gonic/gin v1.7.7
+	golang.org/x/image v0.0.0-20211028202545-6944b10bf410
 	lukechampine.com/blake3 v1.1.7
 )
 
