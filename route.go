@@ -99,6 +99,12 @@ func uploadHandler(c *gin.Context) {
 
 func imageHandler(c *gin.Context) {
 	id := c.Param("id")
+	if validate(id) != true {
+		c.JSON(400, gin.H{
+			"message": "invalid request : invalid id",
+		})
+		return
+	}
 	format := c.Query("format")
 	if format == "" {
 		format = "webp"
