@@ -12,6 +12,7 @@ import (
 	"image/jpeg"
 	"image/png"
 	"net/http"
+	"runtime"
 )
 
 func DecodeImage(input []byte) (image.Image, error) {
@@ -56,7 +57,7 @@ func EncodeAvif(input image.Image) (bytes.Buffer, error) {
 	var err error
 	var buffer bytes.Buffer
 	if err = avif.Encode(&buffer, input, &avif.Options{
-		Threads: 8,
+		Threads: runtime.NumCPU(),
 		Quality: 48,
 	}); err != nil {
 		return buffer, err
