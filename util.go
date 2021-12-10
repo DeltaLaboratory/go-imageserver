@@ -28,3 +28,15 @@ func exists(hash string) bool {
 	_, err := os.Stat("./images/" + hash + ".webp")
 	return err == nil
 }
+
+func validate(hash string) bool {
+	if len(hash) != 128 {
+		return false
+	}
+	for _, r := range hash {
+		if (r < 'a' || r > 'f') && (r < '0' || r > '9') {
+			return false
+		}
+	}
+	return true
+}
