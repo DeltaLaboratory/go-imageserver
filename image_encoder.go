@@ -5,20 +5,20 @@ import (
 	"errors"
 	"github.com/Kagami/go-avif"
 	"github.com/chai2010/webp"
+	"github.com/gabriel-vasile/mimetype"
 	"golang.org/x/image/bmp"
 	"golang.org/x/image/tiff"
 	"image"
 	"image/gif"
 	"image/jpeg"
 	"image/png"
-	"net/http"
 	"runtime"
 )
 
 func DecodeImage(input []byte) (image.Image, error) {
 	var err error
 	var img image.Image
-	contentType := http.DetectContentType(input)
+	contentType := mimetype.Detect(input).String()
 	switch contentType {
 	case "image/jpeg":
 		img, err = jpeg.Decode(bytes.NewReader(input))
