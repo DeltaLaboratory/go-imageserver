@@ -12,4 +12,12 @@ func TestValidate(t *testing.T) {
 	if validate("ff01b3237715f03a373a4ea463c80fcaf03eaa191450b0966e6fa928fc81f401a91f0c1ff88b4732b392266882eccf4f8af9f749cf2ff6f0317a7c7407fef872") != true {
 		t.Error("validate() false positive")
 	}
+	return
+}
+
+func TestExists(t *testing.T) {
+	if exists("uq~gyo\\']i;\n>:|=wco$4") == true {
+		t.Error("exists() false positive")
+	}
+	return
 }
