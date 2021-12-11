@@ -35,7 +35,7 @@ func validate(hash string) bool {
 		return false
 	}
 	for _, r := range hash {
-		if (r < 'a' || r > 'f') && (r < '0' || r > '9') {
+		if (r < 'a' || r > 'f') && (r < '0' || r > '9') { // [a-f && 0-9]
 			return false
 		}
 	}
