@@ -25,8 +25,9 @@ func formFileConvert(form *multipart.FileHeader) ([]byte, error) {
 }
 
 func exists(hash string) bool {
-	_, err := os.Stat("./images/" + hash + ".webp")
-	return err == nil
+	_, webpExists := os.Stat("./images/" + hash + ".webp")
+	_, avifExists := os.Stat("./images/" + hash + ".avif")
+	return (webpExists == nil) && (avifExists == nil)
 }
 
 func validate(hash string) bool {
