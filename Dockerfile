@@ -1,10 +1,18 @@
-FROM golang:1.17-bullseye
+FROM golang:1.17-bullseye AS build
 
 WORKDIR /go/src/app
 COPY . .
 
-RUN apt -y update && apt install -y build-essential && apt install -y libaom-dev
-RUN go get -d -v ./...
-RUN go install -v ./...
+RUN apt -y update && apt install -y build-essential libaom-dev
+RUN go get -d -v ./... \
+    && go build -o application ./...
 
-CMD ["go-imageserver"]
+FROM debian:bullseye-slim
+WORKDIR /go/src/app
+COPY statics ./statics
+COPY --from=build /go/src/app/application .
+RUN apt update -y \
+    && apt install -y libaom-dev
+RUN mkdir -p images \
+    && chmod +x ./application
+ENTRYPOINT ["/go/src/app/application"]
