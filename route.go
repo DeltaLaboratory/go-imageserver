@@ -6,6 +6,7 @@ import (
 	"log"
 	"lukechampine.com/blake3"
 	"os"
+	"strings"
 )
 
 func faviconHandler(c *gin.Context) {
@@ -98,7 +99,7 @@ func uploadHandler(c *gin.Context) {
 }
 
 func imageHandler(c *gin.Context) {
-	id := c.Param("id")
+	id := strings.ToLower(c.Param("id"))
 	if validate(id) != true {
 		c.JSON(400, gin.H{
 			"message": "invalid request : cannot find image",
