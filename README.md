@@ -13,6 +13,8 @@ Next, clone this repo, and execute the program by `go run main.go`.
   - png
   - jpeg
   - webp
+  - tiff
+  - bmp
   - gif [partly supported]
 - download format
   - webp
