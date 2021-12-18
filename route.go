@@ -136,9 +136,9 @@ func sizeLimitMiddleware(c *gin.Context) {
 		c.JSON(400, gin.H{
 			"message": "invalid request : file size limit exceeded",
 		})
+		c.Abort()
 		return
 	}
-	c.Request.Body = http.MaxBytesReader(w, c.Request.Body, config.UploadSizeLimit<<20)
-
+	c.Request.Body = http.MaxBytesReader(w, c.Request.Body, config.UploadSizeLimit<<20) // for security reason
 	c.Next()
 }
