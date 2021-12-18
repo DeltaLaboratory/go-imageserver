@@ -23,9 +23,10 @@ type AvifConfig struct {
 }
 
 type Config struct {
-	WebpOption  WebpConfig `yaml:"WebpOption"`
-	AvifOption  AvifConfig `yaml:"AvifOption"`
-	MemoryLimit int64      `yaml:"MemoryLimit"`
+	WebpOption      WebpConfig `yaml:"WebpOption"`
+	AvifOption      AvifConfig `yaml:"AvifOption"`
+	MemoryLimit     int64      `yaml:"MemoryLimit"`
+	UploadSizeLimit int64      `yaml:"UploadSizeLimit"`
 }
 
 func formFileConvert(form *multipart.FileHeader) ([]byte, error) {
@@ -67,7 +68,8 @@ func loadConfig() (Config, error) {
 				Speed:   1,
 				Quality: 63,
 			},
-			MemoryLimit: 8,
+			MemoryLimit:     8,
+			UploadSizeLimit: -1,
 		})
 		if err != nil {
 			log.Println(err)
