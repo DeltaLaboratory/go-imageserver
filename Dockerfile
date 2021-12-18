@@ -8,11 +8,12 @@ RUN go get -d -v ./... \
     && go build -o application ./...
 
 FROM debian:bullseye-slim
-WORKDIR /go/src/app
+WORKDIR /
 COPY statics ./statics
 COPY --from=build /go/src/app/application .
 RUN apt update -y \
     && apt install -y libaom-dev
 RUN mkdir -p images \
+    && mkdir -p config \
     && chmod +x ./application
-ENTRYPOINT ["/go/src/app/application"]
+ENTRYPOINT ["/application"]

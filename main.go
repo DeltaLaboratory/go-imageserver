@@ -21,6 +21,7 @@ func main() {
 	log.Println("Done. Starting server...")
 	gin.SetMode(gin.ReleaseMode)
 	server := gin.New()
+	server.MaxMultipartMemory = config.MemoryLimit << 20
 	server.POST("/upload", uploadHandler)
 	server.GET("/image/:id", imageHandler)
 	server.GET("/favicon.ico", faviconHandler)
