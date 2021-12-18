@@ -15,13 +15,11 @@ Next, clone this repo, and execute the program by `go run main.go`.
 `docker pull ghcr.io/deltalaboratory/go-imageserver:0.1.0` and `docker run [some image dir or volume]:/go/src/app/images/ -p 8000:80 ghcr.io/deltalaboratory/go-imageserver:0.1.0`
 
 ## supported format
-- upload format
-  - png
-  - jpeg
-  - webp
-  - tiff
-  - bmp
-  - gif [partly supported]
-- download format
-  - webp
-  - avif
+| upload | download |
+|--------|----------|
+| png    | webp     |
+| jpeg   | avif     |
+| webp   |
+| tiff   |
+| bmp    |
+| gif    |
