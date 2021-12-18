@@ -12,6 +12,7 @@ WORKDIR /
 COPY statics ./statics
 COPY --from=build /go/src/app/application .
 RUN apt update -y \
+    && apt upgrade -y \
     && apt install -y libaom-dev
 RUN mkdir -p images \
     && mkdir -p config \
