@@ -128,8 +128,9 @@ func sizeLimitMiddleware(c *gin.Context) {
 	fileSize, err := strconv.Atoi(c.Request.Header.Get("Content-Length"))
 	if err != nil {
 		c.JSON(400, gin.H{
-			"message": "invalid request : no Content-Length header",
+			"message": "invalid request : invalid Content-Length header",
 		})
+		c.Abort()
 		return
 	}
 	if int64(fileSize) > config.UploadSizeLimit<<20 {
