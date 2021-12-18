@@ -5,7 +5,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"lukechampine.com/blake3"
+	"net/http"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -119,4 +121,24 @@ func imageHandler(c *gin.Context) {
 		c.File("./images/" + id + "." + format)
 		return
 	}
+}
+
+func sizeLimitMiddleware(c *gin.Context) {
+	var w http.ResponseWriter = c.Writer
+	fileSize, err := strconv.Atoi(c.Request.Header.Get("Content-Length"))
+	if err != nil {
+		c.JSON(400, gin.H{
+			"message": "invalid request : no Content-Length header",
+		})
+		return
+	}
+	if int64(fileSize) > config.UploadSizeLimit<<20 {
+		c.JSON(400, gin.H{
+			"message": "invalid request : file size limit exceeded",
+		})
+		return
+	}
+	c.Request.Body = http.MaxBytesReader(w, c.Request.Body, config.UploadSizeLimit<<20)
+
+	c.Next()
 }
