@@ -45,8 +45,9 @@ func EncodeWebp(input image.Image) (bytes.Buffer, error) {
 	var err error
 	var buffer bytes.Buffer
 	if err = webp.Encode(&buffer, input, &webp.Options{
-		Lossless: true,
-		Exact:    true,
+		Lossless: config.WebpOption.Lossless,
+		Exact:    config.WebpOption.Exact,
+		Quality:  config.WebpOption.Quality,
 	}); err != nil {
 		return buffer, err
 	}
