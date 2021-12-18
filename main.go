@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-const Version string = "0.1.0-alpha.1"
+const Version string = "0.1.1-alpha.0"
 
 var config Config
 
