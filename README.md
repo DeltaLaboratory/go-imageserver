@@ -1,6 +1,12 @@
 # go-imageserver
 go-imageserver is an image server which automatically optimize non webp and avif images to webp and avif images.
 
+## workflows
+| branch  | CodeQL                                                                                                                                                                                                                 | Build & Test                                                                                                                                                                                       |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| release | [![CodeQL](https://github.com/DeltaLaboratory/go-imageserver/actions/workflows/codeql-analysis.yml/badge.svg?branch=release)](https://github.com/DeltaLaboratory/go-imageserver/actions/workflows/codeql-analysis.yml) | [![Build & Test](https://github.com/DeltaLaboratory/go-imageserver/actions/workflows/go.yml/badge.svg)](https://github.com/DeltaLaboratory/go-imageserver/actions/workflows/go.yml)                |
+| develop | [![CodeQL](https://github.com/DeltaLaboratory/go-imageserver/actions/workflows/codeql-analysis.yml/badge.svg?branch=develop)](https://github.com/DeltaLaboratory/go-imageserver/actions/workflows/codeql-analysis.yml) | [![Build & Test](https://github.com/DeltaLaboratory/go-imageserver/actions/workflows/go.yml/badge.svg?branch=develop)](https://github.com/DeltaLaboratory/go-imageserver/actions/workflows/go.yml) |
+
 ## how to use
 ### run directly
 First, install libaom and gcc as compile dependencies by `sudo apt update && sudo apt install -y libaom-dev build-essential`(debian-based linux) or `sudo yum update && sudo yum install -y libaom-devel gcc`(centos-based linux)\.
