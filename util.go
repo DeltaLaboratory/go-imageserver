@@ -68,7 +68,7 @@ func loadConfig() (Config, error) {
 				Speed:   1,
 				Quality: 63,
 			},
-			MemoryLimit:     8,
+			MemoryLimit:     -1,
 			UploadSizeLimit: -1,
 		})
 		if err != nil {
