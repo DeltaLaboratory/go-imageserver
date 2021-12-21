@@ -2,7 +2,7 @@ openapi: 3.0.1
 info:
   title: go-imageserver
   description: an image server which automatically optimize non webp and avif images to webp and avif images.
-  version: 0.1.1
+  version: 0.1.2
 paths:
   /upload:
     post:
