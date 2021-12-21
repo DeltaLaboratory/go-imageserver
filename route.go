@@ -65,7 +65,7 @@ func uploadHandler(c *gin.Context) {
 		})
 		return
 	}
-	if err = ioutil.WriteFile("./images/"+stringHash+".webp", convertedAvif.Bytes(), 644); err != nil {
+	if err = ioutil.WriteFile("./images/"+stringHash+".avif", convertedAvif.Bytes(), 644); err != nil {
 		c.JSON(500, gin.H{
 			"message": "failed to write file to storage",
 		})
