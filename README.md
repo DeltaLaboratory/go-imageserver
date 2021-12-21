@@ -12,7 +12,7 @@ go-imageserver is an image server which automatically optimize non webp and avif
 First, install libaom and gcc as compile dependencies by `sudo apt update && sudo apt install -y libaom-dev build-essential`(debian-based linux) or `sudo yum update && sudo yum install -y libaom-devel gcc`(centos-based linux)\.
 Next, clone this repo, and execute the program by `go run main.go`.
 ### run through docker
-`docker pull ghcr.io/deltalaboratory/go-imageserver:0.1.1` and `docker run -v [image volume]:/images -v [config dir]:/config -p 8000:80 ghcr.io/deltalaboratory/go-imageserver:0.1.0`
+`docker pull ghcr.io/deltalaboratory/go-imageserver:0.1.1` and `docker run -v [image volume]:/images -v [config dir]:/config -p 8000:80 ghcr.io/deltalaboratory/go-imageserver:0.1.1`
 
 ## supported format
 | upload | download |
