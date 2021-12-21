@@ -1,0 +1,82 @@
+openapi: 3.0.1
+info:
+  title: go-imageserver
+  description: an image server which automatically optimize non webp and avif images to webp and avif images.
+  version: 0.1.1
+paths:
+  /upload:
+    post:
+      summary: upload an image
+      operationId: uploadImage
+      requestBody:
+        description: HTTP Form File Object which include image file
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        200:
+          description: Processed Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  id:
+                    type: string
+        400:
+          description: Something Strange Happned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        500:
+          description: Something Strange Happned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /image/{id}:
+    get:
+      summary: get an image
+      operationId: getImage
+      parameters:
+        - name: id
+          in: path
+          description: image id
+          required: true
+          schema:
+            type: string
+        - name: type
+          in: query
+          description: image format
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Served Successfully
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        404:
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
