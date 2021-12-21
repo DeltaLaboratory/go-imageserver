@@ -5,7 +5,6 @@ import (
 	"gopkg.in/yaml.v3"
 	"io/ioutil"
 	"log"
-	"mime/multipart"
 	"os"
 	"runtime"
 )
@@ -27,24 +26,6 @@ type Config struct {
 	AvifOption      AvifConfig `yaml:"AvifOption"`
 	MemoryLimit     int64      `yaml:"MemoryLimit"`
 	UploadSizeLimit int64      `yaml:"UploadSizeLimit"`
-}
-
-func formFileConvert(form *multipart.FileHeader) ([]byte, error) {
-	buf := make([]byte, form.Size)
-	file, err := form.Open()
-	if err != nil {
-		return nil, err
-	}
-	defer func(file multipart.File) {
-		err := file.Close()
-		if err != nil {
-			log.Println(err)
-		}
-	}(file)
-	if _, err = file.Read(buf); err != nil {
-		return nil, err
-	}
-	return buf, nil
 }
 
 func exists(hash string) bool {
