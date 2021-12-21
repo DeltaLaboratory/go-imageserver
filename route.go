@@ -82,8 +82,8 @@ func uploadHandler(c *gin.Context) {
 func imageHandler(c *gin.Context) {
 	id := strings.ToLower(c.Param("id"))
 	if validate(id) != true {
-		c.JSON(400, gin.H{
-			"message": "invalid request : cannot find image",
+		c.JSON(404, gin.H{
+			"message": "cannot find image",
 		})
 		return
 	}
