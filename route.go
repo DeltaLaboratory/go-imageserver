@@ -3,10 +3,9 @@ package main
 import (
 	"encoding/hex"
 	"github.com/gin-gonic/gin"
-	"log"
+	"io/ioutil"
 	"lukechampine.com/blake3"
 	"net/http"
-	"os"
 	"strconv"
 	"strings"
 )
@@ -60,29 +59,13 @@ func uploadHandler(c *gin.Context) {
 		})
 		return
 	}
-	fileHandler, err := os.Create("./images/" + stringHash + ".webp")
-	defer func(fileHandler *os.File) {
-		err := fileHandler.Close()
-		if err != nil {
-			log.Println(err)
-		}
-	}(fileHandler)
-	_, err = fileHandler.Write(convertedWebp.Bytes())
-	if err != nil {
+	if err = ioutil.WriteFile("./images/"+stringHash+".webp", convertedWebp.Bytes(), 644); err != nil {
 		c.JSON(500, gin.H{
 			"message": "failed to write file to storage",
 		})
 		return
 	}
-	fileHandler, err = os.Create("./images/" + stringHash + ".avif")
-	defer func(fileHandler *os.File) {
-		err := fileHandler.Close()
-		if err != nil {
-			log.Println(err)
-		}
-	}(fileHandler)
-	_, err = fileHandler.Write(convertedAvif.Bytes())
-	if err != nil {
+	if err = ioutil.WriteFile("./images/"+stringHash+".webp", convertedAvif.Bytes(), 644); err != nil {
 		c.JSON(500, gin.H{
 			"message": "failed to write file to storage",
 		})
